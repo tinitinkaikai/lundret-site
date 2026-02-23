@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUNDRET - AI Laundromat Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#ffffff",
+                        "background-dark": "#111418", 
+                        "surface-dark": "#1c2126",
+                        "surface-light": "#f8f9fa",
+                        "accent": "#eef2f6"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans JP", "sans-serif"],
+                        "body": ["Manrope", "Noto Sans JP", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+
+  </head>
+<body class="bg-white text-slate-900 font-display antialiased overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-clip">
+<header class="sticky top-0 z-50 flex items-center bg-white/90 backdrop-blur-md p-4 pb-2 justify-between border-b border-slate-100">
+<div class="flex items-center translate-x-[11px]">
+<h2 class="text-2xl font-black leading-none tracking-[0.08em]">
+<span class="text-[#0f172a]">LUNDR</span><span class="text-[#2f6fdd]">ET</span>
+<span class="ml-2 align-middle text-[11px] font-bold tracking-[0.12em] text-slate-400">(BETA)</span>
+</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-slate-100 rounded-full p-1 relative border border-slate-200">
+<button class="px-3 py-1 text-xs font-bold rounded-full bg-white text-primary shadow-sm ring-1 ring-slate-200 transition-all" id="langBtnJa" type="button">JP</button>
+<button class="px-3 py-1 text-xs font-bold rounded-full text-slate-500 hover:text-slate-700 transition-all" id="langBtnEn" type="button">EN</button>
+</div>
+<button class="sm:hidden text-slate-900 flex items-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1 bg-white">
+<div class="@container">
+<section class="relative w-full min-h-[600px] lg:min-h-[700px] flex flex-col justify-end overflow-hidden group">
+<div class="absolute inset-0 z-0">
+<img alt="Modern bright laundromat interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqWKXky6tghW0-LtUjmacEkGqFEAI1r40MKsIi62cOZUHXl9H67bo04HY1wm1COCMricA2dEQgC85ZA63c9ruFtRpLbczjPAYB34kTO-9FTyfPYuQkety08hlMOlkK_u3Akg-TOSRU_rANfiNr2jBgxS0mdpwfLOs0jaARqmOTuVKES6ggOt867eiwTxtFSAoIQPLmc70nQGAWyF1lREfxjJtQyBoaiq_odpFgtPgN0hHu085gjvfz0pay9UBxZnQYCvzcwaruh1I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/10"></div>
+<div class="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
+</div>
+<div class="relative z-10 w-full max-w-7xl mx-auto px-4 pb-16 pt-20 flex flex-col gap-8 @[480px]:px-8 @[800px]:pb-24">
+<div class="flex flex-col gap-4 max-w-3xl">
+<h2 class="text-4xl font-black leading-tight tracking-[-0.02em] text-slate-900 @[480px]:text-5xl @[800px]:text-7xl drop-shadow-sm" id="landingTopTitle">
+AIで<br class="@[600px]:hidden"/>コインランドリー<br/>経営をスマートに
+</h2>
+<p class="block w-full sm:inline-block sm:w-auto self-start text-base text-slate-600 font-medium leading-relaxed max-w-xl @[480px]:text-lg bg-white/60 backdrop-blur-sm p-4 rounded-lg border border-white/50 shadow-sm" id="landingTopDesc">
+リアルタイムで洗濯機の状況を確認でき、データを<br/>グラフ化し、また、それをAIが分析し提案を行います。
+</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 mt-2">
+<a class="flex items-center justify-center gap-2 h-14 px-8 rounded-lg bg-primary hover:bg-blue-600 text-white text-base font-bold shadow-lg shadow-primary/20 transition-all transform active:scale-95 group/btn ring-1 ring-blue-700/20" href="./contact.html" id="landingContactLink">
+<span id="landingTopCta">お問い合わせ</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<div class="h-10 lg:h-14"></div>
+<section class="relative lg:h-[calc(100vh+900px)]" id="heroPinSection">
+<div class="lg:sticky lg:top-[52px]">
+<div class="flex flex-col lg:flex-row gap-12 lg:gap-20 px-4 py-12 lg:px-10 lg:py-24 items-center justify-between max-w-7xl mx-auto" id="heroSwapSection">
+<div class="flex flex-col gap-8 max-w-2xl lg:w-1/2 z-10 order-1" id="heroCopyLock">
+<div class="flex flex-col gap-5 text-left">
+<h1 class="text-slate-900 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-[-0.033em]" id="dashboardHeroTitle">
+                                稼働率を最大化する<br/><span class="text-primary">AIソリューション</span>
+</h1>
+<h2 class="text-slate-600 text-[15px] sm:text-[17px] font-medium leading-relaxed max-w-lg">
+<span class="block whitespace-nowrap" id="dashboardHeroSub1">Real-time monitoring &amp; AI Analytics for your laundromat business.</span>
+<span class="block" id="dashboardHeroSub2">データに基づいた意思決定で、収益を最大化しましょう。</span>
+</h2>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 mt-2">
+<a class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-slate-900 hover:bg-slate-800 text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors shadow-xl shadow-slate-900/10" href="./contact.html?category=intro" id="heroContactLink">
+<span class="truncate" id="dashboardHeroPrimaryCta">無料で導入</span>
+<span class="material-symbols-outlined ml-2 text-[20px]">arrow_forward</span>
+</a>
+<a class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white hover:bg-slate-50 text-slate-900 text-base font-bold leading-normal tracking-[0.015em] border border-slate-200 transition-colors shadow-sm" href="./examples.html">
+<span class="truncate" id="dashboardHeroSecondaryCta">活用事例</span>
+</a>
+</div>
+</div>
+<div class="relative w-full lg:w-1/2 flex justify-center lg:justify-end lg:pr-8 order-2">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-slate-100 to-primary/5 rounded-full blur-[80px] pointer-events-none -z-10"></div>
+<div class="relative z-10 h-[520px] sm:h-[620px] w-[296px] sm:w-[420px]" id="deviceSwapStage">
+<div class="absolute inset-0 hidden lg:flex items-end justify-center pointer-events-none opacity-0" id="imacMock">
+<div class="w-[338px] sm:w-[428px]">
+<div class="rounded-[1.8rem] border-[6px] border-slate-500 bg-slate-400 p-2.5 shadow-[0_20px_45px_-25px_rgba(51,65,85,0.35)]">
+<div class="h-[188px] sm:h-[230px] rounded-[1.1rem] border border-slate-300/80 bg-white overflow-hidden">
+<img alt="LUNDRET desktop dashboard preview" class="h-full w-full object-cover object-left-top" draggable="false" src="./imac-dashboard-2.png"/>
+</div>
+</div>
+<div class="mx-auto h-4 w-16 rounded-b-xl bg-slate-400"></div>
+<div class="mx-auto mt-1.5 h-2.5 w-28 rounded-full bg-slate-400/90"></div>
+</div>
+</div>
+<div class="absolute inset-0 flex items-end justify-center pointer-events-none" id="phoneMock">
+<div class="w-[260px] sm:w-[320px] rounded-[2.5rem] border-[8px] border-slate-900 bg-slate-900 shadow-2xl shadow-slate-200 overflow-hidden aspect-[9/16]">
+<div class="relative h-full w-full rounded-[2rem] bg-slate-900 overflow-hidden">
+<div class="absolute top-0 w-full h-6 bg-slate-900 z-20">
+<div class="w-16 h-4 bg-black rounded-b-xl mx-auto"></div>
+</div>
+<div class="absolute inset-x-0 top-6 bottom-8 bg-white overflow-hidden">
+<div class="relative h-full w-full overflow-hidden bg-white" id="dashboardPreviewViewport">
+<img alt="LUNDRET dashboard preview" class="pointer-events-none absolute inset-x-0 top-0 h-auto w-full max-w-none select-none" id="dashboardPreviewImage" src="./UI.png"/>
+</div>
+</div>
+<div class="absolute inset-x-8 bottom-5 h-px bg-white/20"></div>
+<div class="absolute bottom-2 left-1/2 h-1.5 w-24 -translate-x-1/2 rounded-full bg-white/80"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="px-4 py-20 lg:px-10 max-w-7xl mx-auto bg-white">
+<div class="flex flex-col gap-6 mb-16 text-center">
+<h2 class="text-slate-900 text-3xl sm:text-4xl font-black leading-tight tracking-[-0.02em]" id="featuresTitle">
+                        店舗運営のすべてを、<br class="sm:hidden"/>手のひらで。
+                    </h2>
+<p class="text-slate-500 text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto" id="featuresLead">
+                        遠隔監視から売上分析まで。<br class="hidden sm:block"/>LUNDRETはオーナー様の業務を劇的に効率化します。
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group flex flex-col gap-5 rounded-2xl border border-slate-100 bg-white p-8 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300">
+<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[32px]">visibility</span>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-slate-900 text-xl font-bold leading-tight" id="feature1Title">リアルタイム監視</h3>
+<p class="text-slate-500 text-sm leading-relaxed font-medium" id="feature1Desc">
+                                店舗の状況をどこからでも確認。マシンの稼働状況をリアルタイムで把握できます。
+                            </p>
+</div>
+</div>
+<div class="group flex flex-col gap-5 rounded-2xl border border-slate-100 bg-white p-8 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300">
+<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[32px]">auto_awesome</span>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-slate-900 text-xl font-bold leading-tight" id="feature2Title">AIによるデータ分析</h3>
+<p class="text-slate-500 text-sm leading-relaxed font-medium" id="feature2Desc">
+                                AIがデータを分析し、具体的な施策を提案します。
+                            </p>
+</div>
+</div>
+<div class="group flex flex-col gap-5 rounded-2xl border border-slate-100 bg-white p-8 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300">
+<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[32px]">analytics</span>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="text-slate-900 text-xl font-bold leading-tight" id="feature3Title">データの蓄積</h3>
+<p class="text-slate-500 text-sm leading-relaxed font-medium" id="feature3Desc">
+                                稼働台数、放置率、売上などのデータを蓄積し、グラフ化します。
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 pb-20">
+<div class="relative overflow-hidden rounded-3xl bg-slate-900 px-8 py-20 text-center md:px-16 max-w-7xl mx-auto shadow-2xl shadow-slate-200">
+<div class="absolute top-0 right-0 w-full h-full opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 flex flex-col items-center gap-8">
+<h2 class="text-white text-3xl font-black leading-tight sm:text-4xl lg:text-5xl max-w-3xl" id="bottomCtaTitle">
+                            あなたのコインランドリー経営を、<br/>次のレベルへ。
+                        </h2>
+<p class="text-slate-300 text-lg font-medium max-w-lg" id="bottomCtaDesc">
+                            無料でAIによる効率化を体験してください。
+                        </p>
+<a class="flex min-w-[200px] cursor-pointer items-center justify-center rounded-lg bg-primary hover:bg-blue-600 h-14 px-10 text-white text-lg font-bold transition-all hover:scale-105 shadow-lg shadow-primary/30" href="./contact.html?category=intro" id="bottomContactLink">
+<span id="bottomCtaButton">無料で導入</span>
+                        </a>
+</div>
+</div>
+</div>
+</main>
+<footer class="flex flex-col gap-8 px-5 py-12 text-center border-t border-slate-100 bg-white">
+<div class="relative left-[3px] flex flex-wrap items-center justify-center gap-8 sm:justify-center">
+<a class="text-slate-500 text-sm font-medium hover:text-primary transition-colors" href="./privacy.html" id="footerPrivacy">プライバシーポリシー</a>
+<a class="text-slate-500 text-sm font-medium hover:text-primary transition-colors" href="./terms.html" id="footerTerms">利用規約</a>
+<a class="text-slate-500 text-sm font-medium hover:text-primary transition-colors" href="./contact.html" id="footerContact">お問い合わせ</a>
+</div>
+</footer>
+</div>
+<script>
+  (() => {
+    const SCROLL_DAMPING = 0.38;
+    const SCROLL_EASE = 0.28;
+    const previewViewport = document.getElementById('dashboardPreviewViewport');
+    const previewImage = document.getElementById('dashboardPreviewImage');
+    const phoneMock = document.getElementById('phoneMock');
+    const imacMock = document.getElementById('imacMock');
+    const deviceSwapStage = document.getElementById('deviceSwapStage');
+    const heroPinSection = document.getElementById('heroPinSection');
+    const langBtnJa = document.getElementById('langBtnJa');
+    const langBtnEn = document.getElementById('langBtnEn');
+    const landingContactLink = document.getElementById('landingContactLink');
+    const heroContactLink = document.getElementById('heroContactLink');
+    const bottomContactLink = document.getElementById('bottomContactLink');
+    const footerContactLink = document.getElementById('footerContact');
+    const IMAGE_SCROLL_RANGE = 460;
+    const SWAP_RANGE = 440;
+    let targetScrollY = window.scrollY;
+    let wheelRaf = 0;
+    let syncRaf = 0;
+
+    const translations = {
+      ja: {
+        title: 'LUNDRET - AI Laundromat Solutions',
+        landingTopTitle: 'AIで<br class="@[600px]:hidden"/>コインランドリー<br/>経営をスマートに',
+        landingTopDesc: 'リアルタイムで洗濯機の状況を確認でき、データを<br/>グラフ化し、また、それをAIが分析し提案を行います。',
+        landingTopCta: 'お問い合わせ',
+        dashboardHeroTitle: '稼働率を最大化する<br/><span class=\"text-primary\">AIソリューション</span>',
+        dashboardHeroSub1: 'Real-time monitoring &amp; AI Analytics for your laundromat business.',
+        dashboardHeroSub2: 'データに基づいた意思決定で、収益を最大化しましょう。',
+        dashboardHeroPrimaryCta: '無料で導入',
+        dashboardHeroSecondaryCta: '活用事例',
+        featuresTitle: '店舗運営のすべてを、<br class=\"sm:hidden\"/>手のひらで。',
+        featuresLead: '遠隔監視から売上分析まで。<br class=\"hidden sm:block\"/>LUNDRETはオーナー様の業務を劇的に効率化します。',
+        feature1Title: 'リアルタイム監視',
+        feature1Desc: '店舗の状況をどこからでも確認。マシンの稼働状況をリアルタイムで把握できます。',
+        feature2Title: 'AIによるデータ分析',
+        feature2Desc: 'AIがデータを分析し、具体的な施策を提案します。',
+        feature3Title: 'データの蓄積',
+        feature3Desc: '稼働台数、放置率、売上などのデータを蓄積し、グラフ化します。',
+        bottomCtaTitle: 'あなたのコインランドリー経営を、<br/>次のレベルへ。',
+        bottomCtaDesc: '無料でAIによる効率化を体験してください。',
+        bottomCtaButton: '無料で導入',
+        footerPrivacy: 'プライバシーポリシー',
+        footerTerms: '利用規約',
+        footerContact: 'お問い合わせ'
+      },
+      en: {
+        title: 'LUNDRET - AI Laundromat Solutions',
+        landingTopTitle: 'Smarter Laundromat<br/>Management with AI',
+        landingTopDesc: 'Monitor washer status in real time, visualize your data,<br/>and get AI-powered analysis and recommendations.',
+        landingTopCta: 'Contact Us',
+        dashboardHeroTitle: 'Maximize Uptime with<br/><span class=\"text-primary\">AI Solutions</span>',
+        dashboardHeroSub1: 'Real-time monitoring &amp; AI Analytics for your laundromat business.',
+        dashboardHeroSub2: 'Make data-driven decisions to maximize your revenue.',
+        dashboardHeroPrimaryCta: 'Start Free',
+        dashboardHeroSecondaryCta: 'Use Cases',
+        featuresTitle: 'Everything for store operations,<br class=\"sm:hidden\"/>in your hand.',
+        featuresLead: 'From remote monitoring to sales analysis.<br class=\"hidden sm:block\"/>LUNDRET dramatically improves owner efficiency.',
+        feature1Title: 'Real-time Monitoring',
+        feature1Desc: 'Check store conditions from anywhere and monitor machine status in real time.',
+        feature2Title: 'AI Data Analysis',
+        feature2Desc: 'AI analyzes your data and recommends concrete actions.',
+        feature3Title: 'Data Accumulation',
+        feature3Desc: 'Accumulate operating counts, unattended rates, and sales data, then visualize them in charts.',
+        bottomCtaTitle: 'Take your laundromat business<br/>to the next level.',
+        bottomCtaDesc: 'Experience AI-powered efficiency improvements for free.',
+        bottomCtaButton: 'Start Free',
+        footerPrivacy: 'Privacy Policy',
+        footerTerms: 'Terms of Service',
+        footerContact: 'Contact'
+      }
+    };
+
+    function setToggleState(active, inactive) {
+      if (!active || !inactive) return;
+      active.classList.add('bg-white', 'text-primary', 'shadow-sm', 'ring-1', 'ring-slate-200');
+      active.classList.remove('text-slate-500');
+      inactive.classList.remove('bg-white', 'text-primary', 'shadow-sm', 'ring-1', 'ring-slate-200');
+      inactive.classList.add('text-slate-500');
+    }
+
+    function applyLangToContactLinks(lang) {
+      const links = [landingContactLink, heroContactLink, bottomContactLink, footerContactLink].filter(Boolean);
+      links.forEach((link) => {
+        const rawHref = link.getAttribute('href');
+        if (!rawHref) return;
+        let url;
+        try {
+          url = new URL(rawHref, window.location.href);
+        } catch (_) {
+          return;
+        }
+        if (lang === 'en') {
+          url.searchParams.set('lang', 'en');
+        } else {
+          url.searchParams.delete('lang');
+        }
+        const rel = `${url.pathname.split('/').pop() ? './' + url.pathname.split('/').pop() : rawHref}${url.search}${url.hash}`;
+        link.setAttribute('href', rel);
+      });
+    }
+
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.ja;
+      document.documentElement.lang = lang === 'en' ? 'en' : 'ja';
+      document.title = dict.title;
+
+      Object.entries(dict).forEach(([id, value]) => {
+        if (id === 'title') return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = value;
+      });
+
+      if (lang === 'en') {
+        setToggleState(langBtnEn, langBtnJa);
+      } else {
+        setToggleState(langBtnJa, langBtnEn);
+      }
+      applyLangToContactLinks(lang);
+
+      try {
+        localStorage.setItem('lundret_lang', lang);
+      } catch (_) {}
+    }
+
+    function clamp01(v) {
+      return Math.max(0, Math.min(1, v));
+    }
+
+    function pageMaxScroll() {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function clampPageTarget() {
+      const max = pageMaxScroll();
+      targetScrollY = Math.max(0, Math.min(max, targetScrollY));
+    }
+
+    function isDesktopViewport() {
+      return window.matchMedia('(min-width: 1024px)').matches;
+    }
+
+    function getPinMetrics() {
+      const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+      if (!isDesktop || !heroPinSection) return { isDesktop: false, scrolledInPin: 0 };
+      const stickyTop = 80;
+      const pinStart = heroPinSection.getBoundingClientRect().top + window.scrollY - stickyTop;
+      return { isDesktop: true, scrolledInPin: Math.max(0, window.scrollY - pinStart) };
+    }
+
+    function syncPreviewImageScroll() {
+      if (!previewViewport || !previewImage) return;
+      const maxImageShift = Math.max(0, previewImage.clientHeight - previewViewport.clientHeight);
+      if (maxImageShift <= 0) {
+        previewImage.style.transform = 'translate3d(0, 0, 0)';
+        return;
+      }
+
+      const pinMetrics = getPinMetrics();
+      if (pinMetrics.isDesktop) {
+        const imageProgress = clamp01(pinMetrics.scrolledInPin / IMAGE_SCROLL_RANGE);
+        previewImage.style.transform = `translate3d(0, ${-Math.round(maxImageShift * imageProgress)}px, 0)`;
+        return;
+      }
+
+      if (!heroPinSection) {
+        previewImage.style.transform = 'translate3d(0, 0, 0)';
+        return;
+      }
+      const sectionTop = heroPinSection.getBoundingClientRect().top + window.scrollY;
+      const mobileStart = Math.max(0, sectionTop - window.innerHeight * 0.25);
+      const ratio = clamp01((window.scrollY - mobileStart) / 420);
+      previewImage.style.transform = `translate3d(0, ${-Math.round(maxImageShift * ratio)}px, 0)`;
+    }
+
+    function syncDeviceSwap() {
+      if (!phoneMock || !imacMock || !deviceSwapStage) return;
+      if (!isDesktopViewport()) {
+        phoneMock.style.transform = 'translate3d(0, -34px, 0) scale(1) rotateY(0deg)';
+        phoneMock.style.opacity = '1';
+        phoneMock.style.visibility = 'visible';
+        phoneMock.style.zIndex = '40';
+        imacMock.style.transform = 'translate3d(15px, -99px, 0) scale(0.8)';
+        imacMock.style.opacity = '0';
+        imacMock.style.zIndex = '20';
+        return;
+      }
+
+      let progress = 0;
+      const pinMetrics = getPinMetrics();
+
+      if (pinMetrics.isDesktop) {
+        progress = clamp01((pinMetrics.scrolledInPin - IMAGE_SCROLL_RANGE) / SWAP_RANGE);
+      } else {
+        const stageTop = deviceSwapStage.getBoundingClientRect().top + window.scrollY;
+        const swapStart = Math.max(0, stageTop - 180);
+        progress = clamp01((window.scrollY - swapStart) / SWAP_RANGE);
+      }
+
+      const phoneX = 120 * progress;
+      const phoneY = -28 * progress;
+      const phoneScale = 1 - 0.28 * progress;
+      const phoneRotate = -16 * progress;
+      phoneMock.style.transform = `translate3d(${phoneX}px, ${phoneY - 34}px, 0) scale(${phoneScale}) rotateY(${phoneRotate}deg)`;
+      phoneMock.style.opacity = String(Math.max(0, 1 - progress * 1.25));
+      phoneMock.style.visibility = progress >= 0.98 ? 'hidden' : 'visible';
+      phoneMock.style.zIndex = progress > 0.55 ? '10' : '40';
+
+      const imacReveal = clamp01((progress - 0.08) / 0.92);
+      const imacY = 72 * (1 - imacReveal);
+      const imacScale = 0.8 + 0.3 * imacReveal;
+      imacMock.style.transform = `translate3d(15px, ${imacY - 171}px, 0) scale(${imacScale})`;
+      imacMock.style.opacity = String(imacReveal);
+      imacMock.style.zIndex = progress > 0.55 ? '50' : '20';
+    }
+
+    function requestFrameSync() {
+      if (syncRaf) return;
+      syncRaf = window.requestAnimationFrame(() => {
+        syncRaf = 0;
+        syncPreviewImageScroll();
+        syncDeviceSwap();
+      });
+    }
+
+    function animateWheelScroll() {
+      const delta = targetScrollY - window.scrollY;
+      if (Math.abs(delta) < 0.5) {
+        window.scrollTo(0, targetScrollY);
+        wheelRaf = 0;
+        requestFrameSync();
+        return;
+      }
+
+      window.scrollTo(0, window.scrollY + delta * SCROLL_EASE);
+      requestFrameSync();
+      wheelRaf = window.requestAnimationFrame(animateWheelScroll);
+    }
+
+    window.addEventListener(
+      'wheel',
+      (event) => {
+        if (!isDesktopViewport()) return;
+        if (event.ctrlKey || event.metaKey) return;
+        const target = event.target instanceof Element ? event.target : null;
+        const editable = target ? target.closest('input, textarea, select, [contenteditable="true"]') : null;
+        if (editable) return;
+
+        event.preventDefault();
+        targetScrollY += event.deltaY * SCROLL_DAMPING;
+        clampPageTarget();
+        if (!wheelRaf) wheelRaf = window.requestAnimationFrame(animateWheelScroll);
+      },
+      { passive: false }
+    );
+
+    window.addEventListener('scroll', requestFrameSync, { passive: true });
+    window.addEventListener('resize', () => {
+      clampPageTarget();
+      requestFrameSync();
+    });
+    if (previewImage) previewImage.addEventListener('load', requestFrameSync);
+    if (phoneMock) phoneMock.style.willChange = 'transform, opacity';
+    if (imacMock) imacMock.style.willChange = 'transform, opacity';
+
+    if (langBtnJa) {
+      langBtnJa.addEventListener('click', () => applyLanguage('ja'));
+    }
+    if (langBtnEn) {
+      langBtnEn.addEventListener('click', () => applyLanguage('en'));
+    }
+    let initialLang = 'ja';
+    try {
+      const savedLang = localStorage.getItem('lundret_lang');
+      if (savedLang === 'en' || savedLang === 'ja') initialLang = savedLang;
+    } catch (_) {}
+    applyLanguage(initialLang);
+
+    requestFrameSync();
+  })();
+</script>
+
+</body></html>
